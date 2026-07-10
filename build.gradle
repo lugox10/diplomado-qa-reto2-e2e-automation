@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'net.serenity-bdd.serenity-gradle-plugin' version '4.2.34'
+}
+
+group = 'com.saucedemo'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    serenityVersion = '4.2.34'
+}
+
+dependencies {
+
+    testImplementation "net.serenity-bdd:serenity-core:$serenityVersion"
+    testImplementation "net.serenity-bdd:serenity-junit:$serenityVersion"
+
+    testImplementation "net.serenity-bdd:serenity-screenplay:$serenityVersion"
+    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:$serenityVersion"
+
+    testImplementation "net.serenity-bdd:serenity-cucumber:$serenityVersion"
+
+    testImplementation 'junit:junit:4.13.2'
+
+    testImplementation 'org.slf4j:slf4j-simple:2.0.13'
+}
+
+test {
+    useJUnit()
+
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+gradle.startParameter.continueOnFailure = true
